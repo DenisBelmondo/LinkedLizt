@@ -21,12 +21,12 @@ public class LinkedLizt<T>
 			this.next = null;
 		}
 		
-		public Knode getNext()
+		public Knode<T> getNext()
 		{
 			return this.next;
 		}
 		
-		public void setNext(Knode next)
+		public void setNext(Knode<T> next)
 		{
 			this.next = next;
 			return;
@@ -99,16 +99,13 @@ public class LinkedLizt<T>
 	
 	public void add(T data)
 	{
-		Knode<T> curNode = head;
-		
 		if (head == null)
 		{
 			head = new Knode<T>(data);
-			// System.out.println("Adding head node " + data);
 		}
 		else
 		{
-			// System.out.println("Adding subsequent node " + data);
+			Knode<T> curNode = head;
 			
 			while (curNode.getNext() != null) {
 				curNode = curNode.getNext();
@@ -132,7 +129,20 @@ public class LinkedLizt<T>
 	
 	public void clear()
 	{
+		Knode<T> curNode = this.head;
 		
+		for(int i = length(); i >= 0; --i)
+		{
+			for(int j = 0; j <= i; ++j)
+			{
+				try {
+					curNode.setData(null);
+					Knode<T> nextNode = curNode.getNext();
+					curNode.setNext(null);
+					curNode = nextNode;
+				} catch (NullPointerException e) {}
+			}
+		}
 		
 		return;
 	}
