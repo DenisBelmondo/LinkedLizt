@@ -14,7 +14,7 @@ public class LinkedLizt<T>
 			this.data = null;
 			this.next = null;
 		}
-	
+		
 		public Knode(T data)
 		{
 			this.data = data;
@@ -42,7 +42,6 @@ public class LinkedLizt<T>
 			this.data = data;
 			return;
 		}
-		
 	}
 	
 	/*
@@ -121,8 +120,19 @@ public class LinkedLizt<T>
 		return;
 	}
 	
-	public void add(T data, int index)
+	public void addFirst(T data)
 	{
+		Knode<T> curNode = new Knode<T>(data);
+		
+		curNode.setNext(head);
+		this.head = curNode;
+		
+		return;
+	}
+	
+	public void clear()
+	{
+		
 		
 		return;
 	}
