@@ -79,22 +79,23 @@ public class LinkedLizt<T>
 		return 0;
 	}
 	
+	/*
+		FUNCTIONS!!!
+	*/
+	
 	public T get(int index)
 	{
-		try
-		{
-			Knode<T> curNode = head;
-			
-			for (int i = 0; i < index; ++i) {
-				curNode = curNode.getNext();
-			}
-			
-			return curNode.getData();
-		}
-		catch(NullPointerException e)
-		{
+		if (index < 0 || index >= length()) {
 			throw new IndexOutOfBoundsException();
 		}
+		
+		Knode<T> curNode = head;
+		
+		for (int i = 0; i < index; ++i) {
+			curNode = curNode.getNext();
+		}
+		
+		return curNode.getData();
 	}
 	
 	public void add(T data)
@@ -118,5 +119,22 @@ public class LinkedLizt<T>
 		}
 		
 		return;
+	}
+	
+	public void add(T data, int index)
+	{
+		
+		return;
+	}
+	
+	public String toString()
+	{
+		String str = "[";
+		
+		for(int i = 0; i < length(); ++i) {
+			str += get(i) + (i == length() - 1 ? "]" : "-> ");
+		}
+		
+		return str;
 	}
 }
