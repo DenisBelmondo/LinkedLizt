@@ -119,7 +119,7 @@ public class LinkedLizt<T>
 	
 	public void add(int index, T data)
 	{
-		if (index < 0 || index >= length()) {
+		if (index < 0 || index > length()) {
 			throw new IndexOutOfBoundsException();
 		}
 		
@@ -150,6 +150,13 @@ public class LinkedLizt<T>
 			}
 		}
 		
+		return;
+	}
+	
+	// lol
+	public void addLast(T data)
+	{
+		add(length(), data);
 		return;
 	}
 	

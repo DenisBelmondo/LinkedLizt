@@ -9,7 +9,7 @@ public class Main
 		lizt.add("Name");
 		lizt.add("Is");
 		lizt.add("Bob.");
-		lizt.add(1, "Idiot");
+		lizt.addLast("See ya!");
 		
 		System.out.println("Printing out list wholesale: " + lizt);
 		System.out.println("List length: " + lizt.length());
