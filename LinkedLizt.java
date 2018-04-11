@@ -170,7 +170,9 @@ public class LinkedLizt<T>
 			{
 				try {
 					curNode.setData(null);
+					
 					Knode<T> nextNode = curNode.getNext();
+					
 					curNode.setNext(null);
 					curNode = nextNode;
 				} catch (NullPointerException e){}
