@@ -4,29 +4,18 @@ public class Main
 	{
 		LinkedLizt<String> lizt = new LinkedLizt<String>();
 		lizt.add("Hello");
+		lizt.add(null);
 		lizt.add("My");
 		lizt.add("Name");
 		lizt.add("Is");
-		lizt.add(null);
 		lizt.add("Bob.");
-		
-		System.out.println(
-			"Printing out 0, 1, 2, 4: "
-			+ "\n"
-			+ lizt.get(0)
-			+ " "
-			+ lizt.get(1)
-			+ " "
-			+ lizt.get(2)
-			+ " "
-			+ lizt.get(4)
-		);
+		lizt.add(1, "Idiot");
 		
 		System.out.println("Printing out list wholesale: " + lizt);
 		System.out.println("List length: " + lizt.length());
 		
 		lizt.clear();
-		System.out.println(lizt);
+		System.out.println("After clearing: " + lizt);
 		
 		return;
 	}

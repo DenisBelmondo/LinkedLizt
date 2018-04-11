@@ -64,7 +64,7 @@ public class LinkedLizt<T>
 	{
 		Knode<T> curNode = head;
 		
-		if (head != null)
+		if (this.head != null)
 		{
 			int i = 1;
 			while (curNode.getNext() != null) {
@@ -99,9 +99,9 @@ public class LinkedLizt<T>
 	
 	public void add(T data)
 	{
-		if (head == null)
+		if (this.head == null)
 		{
-			head = new Knode<T>(data);
+			this.head = new Knode<T>(data);
 		}
 		else
 		{
@@ -117,12 +117,38 @@ public class LinkedLizt<T>
 		return;
 	}
 	
-	public void addFirst(T data)
+	public void add(int index, T data)
 	{
-		Knode<T> curNode = new Knode<T>(data);
+		if (index < 0 || index >= length()) {
+			throw new IndexOutOfBoundsException();
+		}
 		
-		curNode.setNext(head);
-		this.head = curNode;
+		if (this.head == null)
+		{
+			add(data);
+		}
+		else
+		{
+			Knode<T> curNode = this.head;
+			
+			if (index == 0)
+			{
+				Knode<T> newNode = new Knode<T>(data);
+				newNode.setNext(curNode);
+				
+				this.head = newNode;
+			}
+			else
+			{
+				for(int i = 0; i < index; ++i) {
+					curNode = i == 0 ? curNode : curNode.getNext();
+				}
+
+				Knode<T> newNode = new Knode<T>(data);
+				newNode.setNext(curNode.getNext());
+				curNode.setNext(newNode);
+			}
+		}
 		
 		return;
 	}
@@ -140,7 +166,7 @@ public class LinkedLizt<T>
 					Knode<T> nextNode = curNode.getNext();
 					curNode.setNext(null);
 					curNode = nextNode;
-				} catch (NullPointerException e) {}
+				} catch (NullPointerException e){}
 			}
 		}
 		
