@@ -187,7 +187,7 @@ public class LinkedLizt<T>
 		String str = "[";
 		
 		for(int i = 0; i < length(); ++i) {
-			str += get(i) + (i == length() - 1 ? "]" : "-> ");
+			str += get(i).toString() + (i == length() - 1 ? "]" : "-> ");
 		}
 		
 		return str;
