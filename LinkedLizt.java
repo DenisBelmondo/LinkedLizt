@@ -1,4 +1,10 @@
-public class LinkedLizt<T>
+import java.io.Serializable;
+
+/*
+	This is going to get messy.
+*/
+
+public class LinkedLizt<T> implements Serializable
 {
 	/*
 		NODE SUBCLASS START
@@ -79,7 +85,11 @@ public class LinkedLizt<T>
 	}
 	
 	/*
-		FUNCTIONS!!!
+		FUNCTIONS
+		
+		NOTE: i'm aware that there's a lot of boilerplate code here.
+			  i would love to refactor this at some point but i simply
+			  don't have time
 	*/
 	
 	public T get(int index)
@@ -95,6 +105,16 @@ public class LinkedLizt<T>
 		}
 		
 		return curNode.getData();
+	}
+	
+	public T getFirst()
+	{
+		return this.head.getData();
+	}
+	
+	public T getLast()
+	{
+		return get(length() - 1);
 	}
 	
 	public void add(T data)
@@ -154,10 +174,99 @@ public class LinkedLizt<T>
 	}
 	
 	// lol
+	
+	public void addFirst(T data)
+	{
+		add(0, data);
+		return;
+	}
+	
 	public void addLast(T data)
 	{
 		add(length(), data);
 		return;
+	}
+	
+	public void set(int index, T data)
+	{
+		if (this.head == null)
+		{
+			add(data);
+		}
+		else
+		{
+			Knode<T> curNode = this.head;
+			
+			for(int i = 0; i < index; ++i) {
+				curNode = curNode.getNext();
+			}
+			
+			curNode.setData(data);
+		}
+		
+		return;
+	}
+	
+	public void remove(int index)
+	{
+		if (index < 0 || index > length()) {
+			throw new IndexOutOfBoundsException();
+		}
+		
+		if (this.head == null)
+		{
+			// this will happen regardless but i'm adding the clause so
+			// that i may add something to it later if i please
+			
+			throw new NullPointerException();
+		}
+		else
+		{
+			if (index == 0)
+			{
+				Knode<T> curNode = this.head.getNext();
+				
+			}
+			else
+			{
+				Knode<T> curNode = this.head;
+				
+				for(int i = 0; i < index; ++i) {
+					curNode = i == 0 ? curNode : curNode.getNext();
+				}
+					
+				Knode<T> nextNode = curNode.getNext();
+				
+				curNode.setNext(nextNode.getNext());
+				
+				nextNode.setData(null);
+				nextNode.setNext(null);
+			}
+		}
+		
+		return;
+	}
+	
+	public void removeLast()
+	{
+		remove(length() - 1);
+		
+		return;
+	}
+	
+	public boolean contains(T data)
+	{
+		Knode<T> curNode = this.head;
+		
+		for(int i = 0; i < length(); ++i)
+		{	
+			if ( data.equals(curNode.getData()) )
+				return true;
+			else
+				curNode = curNode.getNext();
+		}
+		
+		return false;
 	}
 	
 	public void clear()
@@ -182,6 +291,7 @@ public class LinkedLizt<T>
 		return;
 	}
 	
+	@Override
 	public String toString()
 	{
 		String str = "[";
